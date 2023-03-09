@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import "./index.scss"
+import Loading from "./page/Loading";
+import Options from "./page/Options";
+import Result from "./page/Result";
+import WebGL from "./page/WebGL";
 function App() {
+  const [isLoading,setLoading]= useState<boolean>(false);
+  const [showResult,setShowResult] = useState<boolean>(false);
+  const [showOptions,setOptions] = useState<boolean>(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        isLoading?<Loading/>:<></>
+      }
+      <WebGL />
+      {
+        showOptions?<Options/>:<></>
+      }
+      {
+        showOptions?<Result />:<></>
+      }
     </div>
   );
 }
